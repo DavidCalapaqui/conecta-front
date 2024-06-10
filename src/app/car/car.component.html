@@ -1,0 +1,116 @@
+<div>
+
+  <div class="row w-100">
+    
+    <div class="col-md-6 pb-4">
+      <div class="card pb-2">
+        <div class="container">
+          <h4>Registro de vehículos</h4>
+          <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+              <label for="plate">Placa</label>
+              <input type="text" class="form-control" id="plate" formControlName="plate" required appUppercase>
+              <div
+                *ngIf="carForm.get('plate')?.invalid && (carForm.get('plate')?.dirty || carForm.get('plate')?.touched)"
+                class="text-danger">
+                <div *ngIf="carForm.get('plate')?.errors?.['required']">La placa es obligatoria</div>
+                <div *ngIf="carForm.get('plate')?.errors?.['pattern']">Formato de placa incorrecta</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Marca</label>
+              <input type="text" class="form-control" id="automaker" formControlName="automaker" required appUppercase>
+              <div
+                *ngIf="carForm.get('automaker')?.invalid && (carForm.get('automaker')?.dirty || carForm.get('automaker')?.touched)"
+                class="text-danger">
+                <div *ngIf="carForm.get('automaker')?.errors?.['required']">La marca es obligatoria</div>
+                <div *ngIf="carForm.get('automaker')?.errors?.['maxlength']">Máximo 30 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Modelo</label>
+              <input type="text" class="form-control" id="model" formControlName="model" required appUppercase>
+              <div
+                *ngIf="carForm.get('model')?.invalid && (carForm.get('model')?.dirty || carForm.get('model')?.touched)"
+                class="text-danger">
+                <div *ngIf="carForm.get('model')?.errors?.['required']">El modelo es obligatorio</div>
+                <div *ngIf="carForm.get('model')?.errors?.['maxlength']">Máximo 30 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">N° Chasis</label>
+              <input type="text" class="form-control" id="vim" formControlName="vim" required appUppercase>
+              <div *ngIf="carForm.get('vim')?.invalid && (carForm.get('vim')?.dirty || carForm.get('vim')?.touched)"
+                class="text-danger">
+                <div *ngIf="carForm.get('vim')?.errors?.['required']">El número de chasis es obligatorio</div>
+                <div *ngIf="carForm.get('vim')?.errors?.['maxlength']">Máximo 17 caracteres</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Color</label>
+              <input type="text" class="form-control" id="color" formControlName="color" required appUppercase>
+              <div
+                *ngIf="carForm.get('color')?.invalid && (carForm.get('color')?.dirty || carForm.get('color')?.touched)"
+                class="text-danger">
+                <div *ngIf="carForm.get('color')?.errors?.['required']">El número de chasis es obligatorio</div>
+                <div *ngIf="carForm.get('color')?.errors?.['maxlength']">Máximo 20 caracteres</div>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button type="submit" [disabled]="carForm.invalid" class="btn btn-primary btn-md w-100">Registrar</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 " style="display: flex; flex-direction: column; position: relative;">
+      <div class="card pb-2 d-block">
+        <div class="container">
+          <h4>Consulta de circulación</h4>
+          <form [formGroup]="circulationForm" (ngSubmit)="getCanCirculation()">
+
+            <div class="form-group">
+              <label for="plate">Placa</label>
+              <input type="text" class="form-control" id="plate" formControlName="plate" required appUppercase>
+              <div
+                *ngIf="circulationForm.get('plate')?.invalid && (circulationForm.get('plate')?.dirty || circulationForm.get('plate')?.touched)"
+                class="text-danger">
+                <div *ngIf="circulationForm.get('plate')?.errors?.['required']">La placa es obligatoria</div>
+                <div *ngIf="circulationForm.get('plate')?.errors?.['pattern']">Formato de placa incorrecta</div>
+              </div>
+            </div>
+            <div class="w-25"></div>
+            <div class="form-group">
+              <label for="dateTime">Fecha y Hora</label>
+              <input type="datetime-local" class="form-control" id="dateTime" formControlName="dateTime" name="dateTime"
+                required>
+            </div>
+
+            <div class="pt-4">
+              <button type="submit" [disabled]="circulationForm.invalid" class="btn btn-primary  btn-md w-100">Consultar
+                circulacion</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+      <div class="alert alert-primary mt-2"  role="alert">
+        La disponibilidad de restricción de circulación se basa en el último digito de la placa, el día y la hora de circulación. Exactamente como lo hace Pico y Placa.
+      </div>
+     
+    </div>
+
+    
+
+  </div>
+
+</div>
